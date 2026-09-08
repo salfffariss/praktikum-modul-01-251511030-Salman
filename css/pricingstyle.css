@@ -1,0 +1,122 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-primary: #2457d6;
+    --color-primary-dark: #193ca0;
+    --color-bg: #f8f9fa;
+    --color-text: #212529;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    padding-block: 60px;
+}
+
+.container {
+    max-width: 1120px;
+    margin-inline: auto;
+    padding-inline: 16px;
+}
+
+.pricing h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pricing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.price-card {
+    background-color: #ffffff;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.price-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.price-card .price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.price-card ul {
+    list-style-position: inside;
+    margin-bottom: 32px;
+}
+
+.price-card li {
+    margin-bottom: 10px;
+}
+
+.price-card .button {
+    display: block;
+    text-align: center;
+    background-color: #e9ecef;
+    color: var(--color-text);
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto;
+    transition: background-color 0.2s ease;
+}
+
+.price-card .button:hover {
+    background-color: #dee2e6;
+}
+
+.price-card .button:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+.price-card--featured {
+    border: 2px solid var(--color-primary);
+}
+
+.price-card--featured .button {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.price-card--featured .button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.badge {
+    align-self: flex-start;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+    .pricing-list {
+        flex-direction: row;
+        align-items: stretch;
+    }
+}

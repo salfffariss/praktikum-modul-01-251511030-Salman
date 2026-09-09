@@ -1,7 +1,7 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    margin: 1;
-    padding: 1;
+    margin: 0;
+    padding: 0;
 }
 
 :root {
@@ -36,11 +36,17 @@ header h1 {
     margin-bottom: 12px;
 }
 
+/* Navigasi boleh wrap sesuai ketentuan */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+}
+
 nav a {
     color: var(--color-primary);
     text-decoration: none;
     font-weight: 500;
-    margin-right: 16px;
     transition: color 0.2s ease;
 }
 
@@ -54,12 +60,21 @@ nav a:focus-visible {
     outline-offset: 4px;
 }
 
+/* Container Flexbox untuk Card (Mobile-First: 1 Kolom) */
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 .card {
     background-color: #ffffff;
     padding: 24px;
     border: 1px solid #dbe2ea;
     border-radius: 12px;
-    margin-block: 24px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Mencegah overflow horizontal */
 }
 
 .card h2 {
@@ -67,11 +82,13 @@ nav a:focus-visible {
     color: var(--color-primary);
 }
 
+/* Gambar max-width: 100% dan proporsional */
 .card img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 16px;
+    display: block;
 }
 
 .card ul {
@@ -84,12 +101,14 @@ nav a:focus-visible {
 
 .button {
     display: inline-block;
+    text-align: center;
     background-color: var(--color-primary);
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
+    margin-top: auto;
     transition: background-color 0.2s ease;
 }
 
@@ -103,4 +122,17 @@ footer {
     padding-block: 32px;
     color: #6c757d;
     font-size: 0.9rem;
+}
+
+/* Media Query: Ketika ruang cukup (Desktop / Tablet) */
+@media (min-width: 768px) {
+    .card-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .card {
+        flex: 1 1 220px; /* flex-basis aktif agar bisa pindah baris jika sempit */
+    }
 }

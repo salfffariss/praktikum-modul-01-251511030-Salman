@@ -1,0 +1,90 @@
+/* 1. Tokens (Minimal 4 custom properties sesuai kriteria) */
+:root {
+  --color-primary: #2457d6;
+  --color-primary-dark: #193ca0;
+  --color-bg: #f8fafc;
+  --color-text: #1f2937;
+  --space-base: 16px;
+  --font-main: Arial, sans-serif;
+}
+
+/* 2. Box Model & Basic Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Typography & Global Styles */
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+h1, h2 {
+  margin-bottom: var(--space-base);
+}
+
+p, ul {
+  margin-bottom: var(--space-base);
+}
+
+ul {
+  padding-left: 24px;
+}
+
+/* 4. Component Styles (Tanpa pengaturan layout/flexbox) */
+.header, .footer {
+  background-color: #ffffff;
+  padding: calc(var(--space-base) * 1.5);
+  border-bottom: 1px solid #dbe2ea;
+  margin-bottom: var(--space-base);
+}
+
+.footer {
+  border-bottom: none;
+  border-top: 1px solid #dbe2ea;
+  text-align: center;
+}
+
+.nav a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: var(--space-base);
+}
+
+.card {
+  background-color: #ffffff;
+  padding: calc(var(--space-base) * 1.5);
+  border: 1px solid #dbe2ea;
+  border-radius: 8px;
+  margin-bottom: var(--space-base); /* Jarak antar elemen sebelum ada Flexbox */
+}
+
+.profile-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Interaksi dan Aksesibilitas (Syarat MP-08) */
+.button {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+a:focus-visible, .button:focus-visible {
+  outline: 3px solid #f4b000;
+  outline-offset: 3px;
+}

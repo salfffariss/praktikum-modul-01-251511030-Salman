@@ -1,4 +1,4 @@
-/* 1. Tokens (Minimal 4 custom properties sesuai kriteria) */
+/* 1. Tokens */
 :root {
   --color-primary: #2457d6;
   --color-primary-dark: #193ca0;
@@ -23,37 +23,55 @@ body {
   line-height: 1.6;
 }
 
-h1, h2 {
+h1, h2, p, ul, ol {
   margin-bottom: var(--space-base);
 }
 
-p, ul {
-  margin-bottom: var(--space-base);
-}
-
-ul {
+ul, ol {
   padding-left: 24px;
 }
 
-/* 4. Component Styles (Tanpa pengaturan layout/flexbox) */
-.header, .footer {
+/* 4. Layout Container */
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--space-base);
+}
+
+/* 5. Component Styles */
+.header {
   background-color: #ffffff;
   padding: calc(var(--space-base) * 1.5);
   border-bottom: 1px solid #dbe2ea;
-  margin-bottom: var(--space-base);
+  margin-bottom: calc(var(--space-base) * 1.5);
 }
 
 .footer {
-  border-bottom: none;
+  background-color: #ffffff;
+  padding: calc(var(--space-base) * 1.5);
   border-top: 1px solid #dbe2ea;
   text-align: center;
+  margin-top: calc(var(--space-base) * 2);
+}
+
+/* Navigasi Flexbox */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-base);
 }
 
 .nav a {
   color: var(--color-primary);
   text-decoration: none;
   font-weight: bold;
-  margin-right: var(--space-base);
+}
+
+/* Susunan Card Mobile-First */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-base) * 1.5);
 }
 
 .card {
@@ -61,7 +79,7 @@ ul {
   padding: calc(var(--space-base) * 1.5);
   border: 1px solid #dbe2ea;
   border-radius: 8px;
-  margin-bottom: var(--space-base); /* Jarak antar elemen sebelum ada Flexbox */
+  flex: 1 1 100%;
 }
 
 .profile-img {
@@ -70,7 +88,7 @@ ul {
   border-radius: 4px;
 }
 
-/* Interaksi dan Aksesibilitas (Syarat MP-08) */
+/* 6. Interaksi & Aksesibilitas */
 .button {
   display: inline-block;
   background-color: var(--color-primary);
@@ -78,6 +96,8 @@ ul {
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 6px;
+  cursor: pointer;
+  border: none;
 }
 
 .button:hover {
@@ -87,4 +107,16 @@ ul {
 a:focus-visible, .button:focus-visible {
   outline: 3px solid #f4b000;
   outline-offset: 3px;
+}
+
+/* 7. Breakpoint Desktop / Tablet */
+@media (min-width: 768px) {
+  .card-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    flex-basis: calc(50% - 12px);
+  }
 }

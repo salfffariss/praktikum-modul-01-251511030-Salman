@@ -1,0 +1,32 @@
+# Praktikum Modul 1 - Salman Alfarisi Firdaus / 251511030
+
+## Ringkasan Halaman
+Repositori ini berisi seluruh instrumen kode program hasil pengerjaan Tugas Praktikum Modul 1 Mata Kuliah Proyek 3 (Proyek Pengembangan Perangkat Lunak Berbasis Web). Berkas utama terdiri dari `index.html` dan `css/style.css` yang merepresentasikan halaman portofolio biodata profil mahasiswa. Halaman ini dibangun menggunakan kerangka HTML5 Semantik yang valid, didesain secara konsisten dengan arsitektur CSS modern (Design Tokens, CSS Box Model, & Cascade), serta dikembangkan menggunakan pendekatan tata letak responsif Mobile-First melalui implementasi sistem Flexbox dan Media Query.
+
+## Tiga Keputusan Teknis
+1. Refactoring Elemen HTML5 Semantik secara Ketat: Mengeliminasi penggunaan elemen pembungkus generik (`<div>`) pada struktur awal dan menggantinya dengan tag struktural yang bermakna seperti `<header>`, `<nav>`, `<main>`, `<section>`, dan `<footer>`. Keputusan ini diambil untuk menjamin kualitas optimasi mesin pencari (SEO) dan memenuhi standar aksesibilitas agar dokumen dapat di-parsing secara logis oleh perangkat bantu pembaca layar (*screen reader*).
+2. Penerapan Aturan Global `box-sizing: border-box`: Menyuntikkan aturan penguncian dimensi Box Model secara universal melalui selector `*`. Hal ini memastikan seluruh perhitungan jarak dalam (*padding*) dan ketebalan garis tepi (*border*) dikalkulasi ke arah dalam kontainer, sehingga total dimensi lebar terluar kartu kartu (`.card`) terkunci mutlak pada nilai `width` asli (320px) tanpa risiko melar merusak tata letak halaman.
+3. Arsitektur Layout Mobile-First Berbasis Flexbox: Menyusun susunan layout dasar menggunakan satu kolom linier (`flex-direction: column`) untuk mengakomodasi keterbacaan pada layar perangkat seluler terkecil (320px–375px). Selanjutnya, ditambahkan Media Query dengan *breakpoint* minimal `768px` untuk mengubah orientasi sumbu utama kontainer menjadi baris sejajar (`flex-direction: row`) guna mengadaptasi ruang baca yang luas secara proporsional saat dibuka pada layar monitor desktop.
+
+## Masalah, Diagnosis, dan Perbaikan
+1. Masalah: Dimensi kontainer kartu (.card) jebol dan gambar foto profil mahasiswa overflow melar keluar batas wilayah saat diuji pada resolusi layar kritis.
+   - Diagnosis: Berdasarkan hasil inspeksi pada panel DevTools Styles, ditemukan kesalahan sintaksis (*syntax error*) pada penulisan angka satuan di bagian universal reset terluar (`margin: 1; padding: 1;`). Ketiadaan deklarasi unit satuan (`px`) pada angka selain nol membuat browser mengabaikan seluruh blok universal reset tersebut, sehingga properti `box-sizing: border-box` tidak aktif.
+   - Perbaikan: Mengubah parameter angka pada nilai reset universal menjadi nol bersih (`margin: 0; padding: 0;`). Perbaikan ini berhasil mengaktifkan kembali fungsi `border-box` secara global sehingga kalkulasi dimensi Box Model kembali normal dan gambar profil mengecil proporsional mengikuti lebar kartu.
+2. Masalah: Aturan warna latar belakang (`body`), tipografi, dan warna interaksi tombol sama sekali tidak merespon pada browser (Tampilan tetap putih polos).
+   - Diagnosis: Berdasarkan hasil peninjauan kode program, terdapat inkonsistensi penulisan nama variabel tokens pada blok penyimpanan global `:root` dengan nama parameter yang dipanggil di dalam selector elemen `body` (Beda penulisan format kata `--color-bg`).
+   - Perbaikan: Melakukan penyelarasan menyeluruh secara manual pada berkas `style.css` agar seluruh pemanggilan parameter menggunakan format alfabet penulisan yang sama persis. Perbaikan ini menghilangkan pesan galat browser dan membuat seluruh design tokens warna aktif mendesain halaman secara instan.
+
+## Hasil Pengujian Empat Viewport
+1. Viewport 320px (Mobile Kecil): Seluruh komponen kartu tersusun aman dalam satu kolom vertikal linier, tautan menu navigasi atas melipat dengan rapi (*wrap*), teks terbaca jelas, dan halaman bersih dari baris geser horizontal (*horizontal scrollbar*).
+2. Viewport 375px (Mobile Standar): Tampilan profil mahasiswa presisi, area pembungkus tengah tidak menempel langsung ke tepi layar berkat penguncian jarak aman kontainer, dan area interaktif tombol kontak proporsional untuk disentuh.
+3. Viewport 768px (Tablet / Laptop Kecil): Fungsi transisi Media Query aktif mendeteksi perubahan ruang. Arah sumbu utama kontainer berubah mendatar, memicu tiga buah komponen kartu utama berjejer sejajar ke samping secara fleksibel dengan jarak renggang yang konsisten memanfaatkan properti `gap`.
+4. Viewport 1024px (Desktop / Monitor Besar): Komponen kontainer melebar secara proporsional mengikuti batas maksimum lebar halaman yang dikunci pada angka `1120px` melalui reusable class `.container`, menjaga konten tetap terpusat di tengah monitor besar secara estetis.
+
+## Refleksi Belajar
+Melalui pengerjaan instrumen praktikum Modul 1 ini, saya berhasil memahami secara mendalam alur siklus *Request-Response* pada browser serta pentingnya memisahkan lapisan struktur data (HTML) dengan arsitektur presentasi visual (CSS). Menulis kode program murni tanpa bantuan *framework* pihak ketiga melatih ketelitian saya dalam menyusun hierarki heading dokumen secara logis, menguasai cara kalkulasi ruang Box Model secara presisi, serta memanfaatkan fleksibilitas fitur Flexbox untuk membangun halaman web yang responsif, adaptif, dan memiliki standar aksesibilitas dasar yang baik.
+
+## Log AI atau Sumber Bantuan
+1. Pertanyaan: Bagaimana cara melakukan perbaikan semantik pada halaman profil mahasiswa yang penuh dengan elemen `div` agar sesuai dengan kriteria Task 1, dan apa saja elemen struktural HTML5 yang harus digunakan?
+2. Intisari Bantuan: LLM memberikan petunjuk bertahap (*hint*) mengenai peran elemen semantik (seperti `<header>`, `<nav>`, `<main>`, `<section>`, dan `<footer>`) dan melarang penggunaan `div` jika konten memiliki topik atau judul yang jelas.
+3. The Fact Check: Melakukan verifikasi teori dengan membaca dokumentasi resmi web developer Mozilla (MDN Web Docs) pada materi *Structuring Content with HTML* untuk memahami perbedaan penggunaan elemen `<section>` dan `<article>`.
+4. The Twist: Mengadaptasikan petunjuk tersebut ke dalam kode `index.html` sendiri secara mandiri. Alih-alih membungkus menu di luar, saya memasukkan tag `<nav>` bersarang di dalam kontainer `<header>` agar menyatu secara struktural sebagai kepala situs, serta mengunci tingkatan judul kontak menjadi `<h2>` agar hierarki heading tersusun rapi tanpa melompat.
